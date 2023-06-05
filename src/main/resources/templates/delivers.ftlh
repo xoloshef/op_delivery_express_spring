@@ -6,6 +6,10 @@
 <body>
 <h1>DeliveryExpress</h1><hr>
 <h4>Доставка по всей России в лучшем виде</h4>
+<form action="/"method="get">
+    Поиск по названию отправления:t <input type="text" name="title"><br>
+    <input type="submit" value="Поиск"/>
+</form>
 <#list delivers as delivery>
     <div>
         <p><b>${delivery.title}</b> ${delivery.price} руб. | <a href="/delivery/${delivery.id}">Подробнее...</a></p>

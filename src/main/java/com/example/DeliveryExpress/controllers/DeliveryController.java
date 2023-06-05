@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -15,8 +16,8 @@ public class DeliveryController {
     private final DeliveryService deliveryService;
 
     @GetMapping("/")
-    public String delivers(Model model) {
-        model.addAttribute("delivers", deliveryService.listDelivers());      //list   rs
+    public String delivers(@RequestParam(name = "title", required = false) String title, Model model) {
+        model.addAttribute("delivers", deliveryService.listDelivers(title));      //list   rs
         return "delivers";
     }
 

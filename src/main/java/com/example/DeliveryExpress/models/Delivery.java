@@ -1,21 +1,31 @@
 package com.example.DeliveryExpress.models;
 
-public class Delivery {
-    private Long id;
-    private String title;
-    private String description;
-    private int price;
-    private String city;
-    private String author;
 
-    public Delivery(Long id, String title, String description, int price, String city, String author) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.city = city;
-        this.author = author;
-    }
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name="deliverstable")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Delivery {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
+    @Column(name = "price")
+    private int price;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "author")
+    private String author;
 
     public void setId(Long id) {
         this.id = id;
