@@ -2,10 +2,12 @@ package com.example.DeliveryExpress.controllers;
 
 import com.example.DeliveryExpress.models.Delivery;
 import com.example.DeliveryExpress.services.DeliveryService;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@Repository
 @RestController
 @RequiredArgsConstructor
 public class DeliveryController {
@@ -18,7 +20,9 @@ public class DeliveryController {
 
     @GetMapping("/delivery/{id}")
     public String deliveryInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("delivery", deliveryService.getDeliveryById(id));
+        model.addAttribute("ID", deliveryService.getDeliveryById(id));
+        //model.addAttribute("delivery", deliveryService.getDeliveryById(id));
+
         return "delivery-info";
     }
 

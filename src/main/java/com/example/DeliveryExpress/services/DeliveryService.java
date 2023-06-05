@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class DeliveryService {
     private final IDeliveryRepository deliveryRepository;
 
+
     public ArrayList<Delivery> listDelivers(Long id) {
         //List<Delivery> delivers = deliveryRepository.findAll();
         if (id != null) {
@@ -30,6 +31,9 @@ public class DeliveryService {
     }
 
     public void deleteDelivery(long id) {
+        //if (delivery != null) {
+        //
+        //}
         log.info("Delete {}", id);
         deliveryRepository.delete(id);
     }
