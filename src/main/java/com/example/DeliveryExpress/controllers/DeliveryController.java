@@ -4,26 +4,21 @@ import com.example.DeliveryExpress.models.Delivery;
 import com.example.DeliveryExpress.services.DeliveryService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class DeliveryController {
     private final DeliveryService deliveryService;
 
     @GetMapping("/")
-    public String delivers(@RequestParam(name = "title", required = false) String title, Model model) {
-        model.addAttribute("delivers", deliveryService.listDelivers(title));      //list   rs
+    public String delivers(@RequestParam(name = "title", required = false) Long id) {
         return "delivers";
     }
 
     @GetMapping("/delivery/{id}")
     public String deliveryInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("delivery", deliveryService.getProductById(id));
+        model.addAttribute("delivery", deliveryService.getDeliveryById(id));
         return "delivery-info";
     }
 
