@@ -4,7 +4,7 @@ import com.example.DeliveryExpress.models.Delivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
+S
 public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
     List<Delivery> findByTitle(String title);
 }
