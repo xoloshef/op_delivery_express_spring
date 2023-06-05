@@ -6,7 +6,7 @@
 <body>
 <h1>DeliveryExpress</h1><hr>
 <h4>Доставка по всей России в лучшем виде</h4>
-<#list deliverys as delivery>
+<#list delivers as delivery>
     <div>
         <p><b>${delivery.title}</b> ${delivery.price} руб. | <a href="/delivery/${delivery.id}">Подробнее...</a></p>
     </div>

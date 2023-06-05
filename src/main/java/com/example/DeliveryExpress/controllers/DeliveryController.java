@@ -15,9 +15,9 @@ public class DeliveryController {
     private final DeliveryService deliveryService;
 
     @GetMapping("/")
-    public String deliverys(Model model) {
-        model.addAttribute("deliverys", deliveryService.listDelivery() );
-        return "deliverys";
+    public String delivers(Model model) {
+        model.addAttribute("delivers", deliveryService.listDelivers());      //list   rs
+        return "delivers";
     }
 
     @GetMapping("/delivery/{id}")
