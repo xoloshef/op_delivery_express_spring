@@ -1,0 +1,46 @@
+package com.example.deliveryexpress.controller;
+
+import com.example.deliveryexpress.model.Shipment;
+import com.example.deliveryexpress.service.ShipmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/shipments")
+public class ShipmentController {
+
+    private final ShipmentService shipmentService;
+
+    @Autowired
+    public ShipmentController(ShipmentService shipmentService) {
+        this.shipmentService = shipmentService;
+    }
+
+    @PostMapping
+    public Shipment createShipment(@RequestBody Shipment shipment) {
+        // Обработка HTTP POST-запроса для создания нового отправления
+        return shipmentService.createShipment(shipment);
+    }
+
+    @PutMapping("/{shipmentId}/status")
+    public Shipment updateShipmentStatus(@PathVariable Long shipmentId, @RequestParam String newStatus) {
+        // Обработка HTTP PUT-запроса для обновления статуса отправления
+        return shipmentService.updateShipmentStatus(shipmentId, newStatus);
+    }
+
+    @GetMapping
+    public List<Shipment> getAllShipments() {
+        // Обработка HTTP GET-запроса для получения всех отправлений
+        return shipmentService.getAllShipments();
+    }
+
+    @GetMapping("/{shipmentId}")
+    public Shipment getShipmentById(@PathVariable Long shipmentId) {
+        // Обработка HTTP GET-запроса для получения отправления по его ID
+        return shipmentService.getShipmentById(shipmentId);
+    }
+
+    // Другие методы для обработки HTTP-запросов, связанных с отправлениями
+}
