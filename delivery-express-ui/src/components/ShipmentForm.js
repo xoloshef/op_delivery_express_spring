@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Импортируем axios
 
 function ShipmentForm({ onCreateShipment }) {
     const [formData, setFormData] = useState({
@@ -15,9 +16,32 @@ function ShipmentForm({ onCreateShipment }) {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onCreateShipment(formData);
+
+        try {
+            // Отправка POST-запроса на сервер
+            const response = await axios.post('http://localhost:8080/api/shipments', formData);
+
+            // Обработка успешного ответа от сервера
+            console.log('Shipment created:', response.data);
+
+            // Очистка формы после создания отправления
+            setFormData({
+                trackingNumber: '',
+                senderAddress: '',
+                destinationAddress: '',
+                status: '',
+                dateReceived: '',
+                lastStatusDate: '',
+            });
+
+            // Вызов функции onCreateShipment, если необходимо передать данные обратно в родительский компонент
+            onCreateShipment(response.data); // response.data содержит данные, полученные от сервера
+        } catch (error) {
+            // Обработка ошибки при отправке запроса
+            console.error('Error creating shipment:', error);
+        }
     };
 
     return (
