@@ -31,11 +31,6 @@ public class YamlShipmentService implements ShipmentService {
     }
 
     @Override
-    public Shipment updateShipmentStatus(Long shipmentId, String newStatus) {
-        return null;
-    }
-
-    @Override
     public Shipment updateShipmentStatus(Long shipmentId, ShipmentStatus newStatus) {
         Optional<Shipment> optionalShipment = shipmentRepository.findById(shipmentId);
         Shipment shipment;
@@ -72,6 +67,19 @@ public class YamlShipmentService implements ShipmentService {
     @Override
     public Shipment getShipmentById(Long shipmentId) {
         return null;
+    }
+
+    @Override
+    public Shipment findShipmentByTrackingNumber(String trackingNumber) {
+        List<Shipment> shipments = getAllShipments();
+
+        for (Shipment shipment : shipments) {
+            if (shipment.getTrackingNumber().equals(trackingNumber)) {
+                return shipment;
+            }
+        }
+
+        return null; // Если отправление с указанным номером трекинга не найдено
     }
 
     public void saveShipmentsToYamlFile(List<Shipment> shipments, String filePath) throws IOException {
