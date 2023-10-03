@@ -2,14 +2,11 @@ package com.example.deliveryexpress.service;
 
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
-import com.example.deliveryexpress.model.ShipmentsData;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Date;
@@ -28,11 +25,6 @@ public class YamlShipmentService implements ShipmentService {
         shipment.setLastStatusDate(new Date());
         // shipmentRepository.save(shipment); // Реальный код может выглядеть по-другому
         return shipment; // Верните созданное отправление
-    }
-
-    @Override
-    public Shipment updateShipmentStatus(Long shipmentId, String newStatus) {
-        return null;
     }
 
     @Override
@@ -58,7 +50,7 @@ public class YamlShipmentService implements ShipmentService {
 
     @Override
     public List<Shipment> getAllShipments() {
-        Yaml yaml = new Yaml();
+        Yaml yaml = new Yaml(new Constructor(ShipmentsData.class)); // Указываем конструктор для ShipmentsData
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(YAML_FILE)) {
             ShipmentsData shipmentsData = yaml.load(inputStream);
             return shipmentsData.getShipments();
@@ -82,8 +74,13 @@ public class YamlShipmentService implements ShipmentService {
 
     // Добавьте другие методы, если необходимо
 
-
-
+    public List<Shipment> getAllShipments() {
+        // Реализация чтения данных из файла с использованием ShipmentsData
+        // Пример:
+        // ShipmentsData shipmentsData = readShipmentsFromYamlFile(filePath);
+        // return shipmentsData.getShipments();
+        return null;
+    }
 
     // Остальные методы сервиса
 }

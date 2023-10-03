@@ -1,14 +1,7 @@
 package com.example.deliveryexpress.model;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "shipments")
@@ -28,7 +21,8 @@ public class Shipment {
     private String destinationAddress;
 
     @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING) // Эта аннотация указывает, что поле будет храниться как строка
+    private ShipmentStatus status;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_received", nullable = false)
@@ -72,13 +66,17 @@ public class Shipment {
         this.destinationAddress = destinationAddress;
     }
 
-    public String getStatus() {
-        return status;
+    public ShipmentStatus getStatus() {
+        return ShipmentStatus.valueOf(String.valueOf(status));
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(ShipmentStatus status) {
+        this.status = ShipmentStatus.valueOf(status.name());
     }
+
+    // status в строку и затем использует valueOf() для преобразования строки в перечисление ShipmentStatus. Это также гарантирует безопасное преобразование между строкой и перечислением.
+    //
+    //Идея использования String.valueOf(status) предотвращает возможные ошибки, если значение status является null.
 
     public Date getDateReceived() {
         return dateReceived;

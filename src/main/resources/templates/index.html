@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery Express</title>
+    <style>
+        /* Пример стилей для формы и заголовка */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            width: 300px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Delivery Express</h1>
+    <div class="form-container">
+        <form th:action="@{/search}" method="get">
+            <input type="text" name="trackingNumber" placeholder="Введите trackingNumber" required>
+            <input type="submit" value="Поиск">
+        </form>
+    </div>
+</div>
+</body>
+</html>
