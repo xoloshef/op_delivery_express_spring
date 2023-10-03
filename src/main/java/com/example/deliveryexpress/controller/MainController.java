@@ -20,14 +20,13 @@ public class MainController {
 
     @GetMapping("/")
     public String showHomePage() {
-        return "index"; // Вернет шаблон index.html
+        return "index";
     }
 
     @GetMapping("/search")
     public String search(@RequestParam String trackingNumber, Model model) {
-        // Ваша логика поиска по trackingNumber
         Shipment shipment = shipmentService.findShipmentByTrackingNumber(trackingNumber);
         model.addAttribute("shipment", shipment);
-        return "result"; // Вернет шаблон result.html
+        return "result";
     }
 }

@@ -16,7 +16,4 @@ public interface ShipmentService {
     Shipment getShipmentById(Long shipmentId);
 
     Shipment findShipmentByTrackingNumber(String trackingNumber);
-
-
-    // Другие методы, связанные с бизнес-логикой отправлений
 }

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Delivery Express</title>
   <style>
-    /* Пример стилей для страницы результатов поиска */
     .container {
       display: flex;
       flex-direction: column;
@@ -29,22 +28,19 @@
       text-align: left;
     }
 
-    /* Установите ширину столбца "Пункт" */
     .result-table th:first-child, .result-table td:first-child {
       width: 30%;
     }
 
-    /* Установите ширину столбца "Значение" */
     .result-table th:last-child, .result-table td:last-child {
       width: 70%;
     }
 
     <style>
-       /* Устанавливаем изображение в качестве фона страницы */
      body {
-       background-image: url('/static/hand-drawn-minimal-background.jpg'); /* Путь к изображению */
-       background-size: cover; /* Масштабируем изображение на всю ширину и высоту экрана */
-       background-repeat: no-repeat; /* Запрещаем повторение фона */
+       background-image: url('/static/hand-drawn-minimal-background.jpg');
+       background-size: cover;
+       background-repeat: no-repeat;
      }
     </style>
   </style>
@@ -81,7 +77,7 @@
       <td th:text="${shipment.dateReceived}"></td>
     </tr>
     <tr>
-      <td>Дата последнего статуса:</td>
+      <td>Время обнавления статуса:</td>
       <td th:text="${shipment.lastStatusDate}"></td>
     </tr>
   </table>

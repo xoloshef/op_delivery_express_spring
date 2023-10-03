@@ -42,6 +42,4 @@ public class ShipmentController {
         // Обработка HTTP GET-запроса для получения отправления по его ID
         return shipmentService.getShipmentById(shipmentId);
     }
-
-    // Другие методы для обработки HTTP-запросов, связанных с отправлениями
 }

@@ -74,10 +74,6 @@ public class Shipment {
         this.status = ShipmentStatus.valueOf(status.name());
     }
 
-    // status в строку и затем использует valueOf() для преобразования строки в перечисление ShipmentStatus. Это также гарантирует безопасное преобразование между строкой и перечислением.
-    //
-    //Идея использования String.valueOf(status) предотвращает возможные ошибки, если значение status является null.
-
     public Date getDateReceived() {
         return dateReceived;
     }
@@ -93,8 +89,6 @@ public class Shipment {
     public void setLastStatusDate(Date lastStatusDate) {
         this.lastStatusDate = lastStatusDate;
     }
-
-    // Конструкторы, методы equals и hashCode (по желанию)
 
     @Override
     public String toString() {

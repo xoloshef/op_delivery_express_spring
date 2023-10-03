@@ -25,10 +25,8 @@ public class YamlShipmentService implements ShipmentService {
 
     @Override
     public Shipment createShipment(Shipment shipment) {
-        // Реализуйте логику создания отправления, например, сохранение в репозитории
         shipment.setDateReceived(new Date());
         shipment.setLastStatusDate(new Date());
-        // shipmentRepository.save(shipment); // Реальный код может выглядеть по-другому
         return shipment; // Верните созданное отправление
     }
 
@@ -43,12 +41,8 @@ public class YamlShipmentService implements ShipmentService {
         } else {
             return null;
         }
-        // Реализуйте логику обновления статуса отправления
-        // Найдите отправление по shipmentId, обновите статус и сохраните его в репозитории
-        // return updatedShipment; // Верните обновленное отправление
         shipment.setStatus(newStatus);
 
-        // Сохраняем обновленное отправление в репозитории
         return shipmentRepository.save(shipment);
     }
 
@@ -61,7 +55,6 @@ public class YamlShipmentService implements ShipmentService {
             return shipmentsData.getShipments();
         } catch (Exception e) {
             e.printStackTrace();
-            // Обработка ошибок
         }
         return null;
     }
@@ -86,14 +79,6 @@ public class YamlShipmentService implements ShipmentService {
 
     public void saveShipmentsToYamlFile(List<Shipment> shipments, String filePath) throws IOException {
         Yaml yaml = new Yaml();
-        // Сериализуем список отправлений в формат YAML и сохраняем в файл
         yaml.dump(shipments, new FileWriter(filePath));
     }
-
-    // Добавьте другие методы, если необходимо
-
-
-
-
-    // Остальные методы сервиса
 }

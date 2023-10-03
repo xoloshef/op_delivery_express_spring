@@ -20,7 +20,7 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public Shipment createShipment(Shipment shipment) {
-        // Реализуйте логику создания отправления, например, сохранение в репозитории
+        // логика создания отправления, например, сохранение в репозитории
         return shipmentRepository.save(shipment);
     }
 
@@ -31,13 +31,11 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public List<Shipment> getAllShipments() {
-        // Реализуйте логику получения всех отправлений
         return shipmentRepository.findAll();
     }
 
     @Override
     public Shipment getShipmentById(Long shipmentId) {
-        // Реализуйте логику получения отправления по его ID
         return shipmentRepository.findById(shipmentId).orElse(null);
     }
 
@@ -45,6 +43,4 @@ public class ShipmentServiceImpl implements ShipmentService {
     public Shipment findShipmentByTrackingNumber(String trackingNumber) {
         return shipmentRepository.findByTrackingNumber(trackingNumber);
     }
-
-    // Другие методы, связанные с бизнес-логикой отправлений
 }

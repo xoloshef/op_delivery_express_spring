@@ -38,6 +38,4 @@ public class ShipmentsData {
             shipments.remove(index);
         }
     }
-
-    // Другие методы, если необходимо
 }
