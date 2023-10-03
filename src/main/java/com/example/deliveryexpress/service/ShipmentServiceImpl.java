@@ -13,7 +13,6 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     private final ShipmentRepository shipmentRepository;
 
-
     @Autowired
     public ShipmentServiceImpl(ShipmentRepository shipmentRepository) {
         this.shipmentRepository = shipmentRepository;

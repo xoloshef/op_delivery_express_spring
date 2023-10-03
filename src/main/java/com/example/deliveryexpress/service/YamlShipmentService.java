@@ -3,6 +3,7 @@ package com.example.deliveryexpress.service;
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 import com.example.deliveryexpress.model.ShipmentsData;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
+@Primary
 public class YamlShipmentService implements ShipmentService {
 
     private final String YAML_FILE = "shipments.yaml";
