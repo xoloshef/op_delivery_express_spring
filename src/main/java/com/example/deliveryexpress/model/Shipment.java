@@ -21,7 +21,7 @@ public class Shipment {
     private String destinationAddress;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING) // Эта аннотация указывает, что поле будет храниться как строка
+    @Enumerated(EnumType.STRING)
     private ShipmentStatus status;
 
     @Temporal(TemporalType.TIMESTAMP)

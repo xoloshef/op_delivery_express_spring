@@ -27,7 +27,7 @@ public class YamlShipmentService implements ShipmentService {
     public Shipment createShipment(Shipment shipment) {
         shipment.setDateReceived(new Date());
         shipment.setLastStatusDate(new Date());
-        return shipment; // Верните созданное отправление
+        return shipment;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class YamlShipmentService implements ShipmentService {
             }
         }
 
-        return null; // Если отправление с указанным номером трекинга не найдено
+        return null;
     }
 
     public void saveShipmentsToYamlFile(List<Shipment> shipments, String filePath) throws IOException {
