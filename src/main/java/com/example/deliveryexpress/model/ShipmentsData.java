@@ -6,9 +6,9 @@ import java.util.List;
 public class ShipmentsData {
     private List<Shipment> shipments;
 
-    public ShipmentsData() {
+    public ShipmentsData(List<Shipment> shipments) {
         // Инициализация списка shipments
-        shipments = new ArrayList<>();
+        this.shipments = new ArrayList<>();
     }
 
     public List<Shipment> getShipments() {

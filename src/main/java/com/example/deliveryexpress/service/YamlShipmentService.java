@@ -1,5 +1,6 @@
 package com.example.deliveryexpress.service;
 
+import com.example.deliveryexpress.controller.ShipmentForm;
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 import com.example.deliveryexpress.model.ShipmentsData;
@@ -77,8 +78,55 @@ public class YamlShipmentService implements ShipmentService {
         return null;
     }
 
-    public void saveShipmentsToYamlFile(List<Shipment> shipments, String filePath) throws IOException {
+    /* private List<Shipment> loadShipmentsFromYamlFile() {
         Yaml yaml = new Yaml();
-        yaml.dump(shipments, new FileWriter(filePath));
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(YAML_FILE)) {
+            ShipmentsData shipmentsData = yaml.load(inputStream);
+            return shipmentsData.getShipments();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>(); // Возвращаем пустой список в случае ошибки
+    } */
+
+    private List<Shipment> loadShipmentsFromYamlFile() {
+        Yaml yaml = new Yaml();
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(YAML_FILE)) {
+            if (inputStream != null) {
+                ShipmentsData shipmentsData = yaml.load(inputStream);
+                return shipmentsData.getShipments();
+            } else {
+                throw new RuntimeException("Failed to load YAML file");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load YAML file", e);
+        }
     }
+
+
+    public void createShipmentFromForm(ShipmentForm shipmentForm) {
+
+        List<Shipment> shipments = loadShipmentsFromYamlFile();
+
+        Shipment newShipment = new Shipment();
+        newShipment.setTrackingNumber(shipmentForm.getTrackingNumber());
+        newShipment.setSenderAddress(shipmentForm.getSenderAddress());
+        newShipment.setDestinationAddress(shipmentForm.getDestinationAddress());
+        newShipment.setStatus(shipmentForm.getStatus());
+
+        shipments.add(newShipment);
+
+        saveShipmentsToYamlFile(shipments, YAML_FILE);
+    }
+
+    private void saveShipmentsToYamlFile(List<Shipment> shipments, String filePath) {
+        Yaml yaml = new Yaml();
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            yaml.dump(new ShipmentsData(shipments), fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

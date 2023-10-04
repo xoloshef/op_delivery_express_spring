@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Создание отправения</title>
+  <style>
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      width: 300px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Delivery Express</h1>
+  <h2>Создание отправления</h2>
+  <div class="form-container">
+    <form th:action="@{/create}" method="post">
+      <input type="text" name="trackingNumber" placeholder="Tracking Number" required>
+      <input type="text" name="senderAddress" placeholder="Sender Address" required>
+      <input type="text" name="destinationAddress" placeholder="Destination Address" required>
+      <input type="text" name="status" placeholder="Status" required>
+      <input type="submit" value="Применить">
+    </form>
+  </div>
+</div>
+</body>
+</html>

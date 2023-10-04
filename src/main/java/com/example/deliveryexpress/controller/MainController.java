@@ -5,6 +5,8 @@ import com.example.deliveryexpress.service.ShipmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -28,5 +30,17 @@ public class MainController {
         Shipment shipment = shipmentService.findShipmentByTrackingNumber(trackingNumber);
         model.addAttribute("shipment", shipment);
         return "result";
+    }
+
+    @GetMapping("/create")
+    public String showCreatePage() {
+        return "create"; // Вернет шаблон create.html
+    }
+
+    @PostMapping("/create")
+    public String createShipment(@ModelAttribute ShipmentForm shipmentForm) {
+        // Извлеките данные из shipmentForm и сохраните их в YAML-файле
+        shipmentService.createShipmentFromForm(shipmentForm);
+        return "redirect:/"; // Перенаправьте пользователя на главную страницу после создания трек-номера
     }
 }

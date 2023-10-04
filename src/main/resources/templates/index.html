@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delivery Express</title>
+    <title>Главная страница</title>
     <style>
-        /* Пример стилей для формы и заголовка */
+
         .container {
             display: flex;
             flex-direction: column;
@@ -41,7 +41,10 @@
         <form th:action="@{/search}" method="get">
             <input type="text" name="trackingNumber" placeholder="Введите trackingNumber" required>
             <input type="submit" value="Поиск">
+            <hr>
         </form>
+        <input type="button" value="Добавить отправление"  class="create-button" th:href="@{/create}">
+
     </div>
 </div>
 </body>

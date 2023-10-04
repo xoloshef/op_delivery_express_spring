@@ -1,5 +1,6 @@
 package com.example.deliveryexpress.service;
 
+import com.example.deliveryexpress.controller.ShipmentForm;
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 
@@ -16,4 +17,6 @@ public interface ShipmentService {
     Shipment getShipmentById(Long shipmentId);
 
     Shipment findShipmentByTrackingNumber(String trackingNumber);
+
+    void createShipmentFromForm(ShipmentForm shipmentForm);
 }
