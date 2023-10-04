@@ -1,5 +1,6 @@
 package com.example.deliveryexpress.service;
 
+import com.example.deliveryexpress.controller.ShipmentForm;
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 import com.example.deliveryexpress.repository.ShipmentRepository;
@@ -42,5 +43,14 @@ public class ShipmentServiceImpl implements ShipmentService {
     @Override
     public Shipment findShipmentByTrackingNumber(String trackingNumber) {
         return shipmentRepository.findByTrackingNumber(trackingNumber);
+    }
+
+    @Override
+    public void createShipmentFromForm(ShipmentForm shipmentForm) {
+        Shipment newShipment = new Shipment();
+        newShipment.setTrackingNumber(shipmentForm.getTrackingNumber());
+        newShipment.setSenderAddress(shipmentForm.getSenderAddress());
+        newShipment.setDestinationAddress(shipmentForm.getDestinationAddress());
+        //
     }
 }

@@ -4,8 +4,9 @@ import com.example.deliveryexpress.controller.ShipmentForm;
 import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 import com.example.deliveryexpress.model.ShipmentsData;
+import com.example.deliveryexpress.repository.ShipmentRepository;
+import org.springframework.beans.factory.annotation.Autowired; // Добавьте этот импорт
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -22,12 +23,24 @@ import java.util.Optional;
 public class YamlShipmentService implements ShipmentService {
 
     private final String YAML_FILE = "shipments.yaml";
-    private SimpleJpaRepository<Shipment, Long> shipmentRepository;
+
+    private final ShipmentRepository shipmentRepository; // Добавьте это поле и аннотацию @Autowired
+
+    @Autowired // Аннотация для внедрения ShipmentRepository
+    public YamlShipmentService(ShipmentRepository shipmentRepository) {
+        this.shipmentRepository = shipmentRepository;
+    }
 
     @Override
     public Shipment createShipment(Shipment shipment) {
         shipment.setDateReceived(new Date());
         shipment.setLastStatusDate(new Date());
+        // Здесь вы можете выполнить дополнительные операции, связанные с созданием отправления
+        // Например, сохранить отправление в вашем YAML-файле
+        List<Shipment> shipments = loadShipmentsFromYamlFile();
+        shipments.add(shipment);
+        saveShipmentsToYamlFile(shipments, YAML_FILE);
+
         return shipment;
     }
 

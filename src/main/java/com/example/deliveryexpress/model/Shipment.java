@@ -3,9 +3,9 @@ package com.example.deliveryexpress.model;
 import java.util.Date;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "shipments") ///
+@Entity /// @Table(name = "shipments")
 public class Shipment {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
