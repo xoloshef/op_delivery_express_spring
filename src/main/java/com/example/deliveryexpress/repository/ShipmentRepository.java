@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 public interface ShipmentRepository {
     Shipment findByTrackingNumber(String trackingNumber);
 
@@ -15,5 +14,4 @@ public interface ShipmentRepository {
     List<Shipment> findAll();
 
     Optional<Shipment> findById(Long id);
-    // Другие методы для работы с данными YAML
 }

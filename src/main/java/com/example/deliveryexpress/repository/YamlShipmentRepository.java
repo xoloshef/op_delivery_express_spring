@@ -33,7 +33,6 @@ public class YamlShipmentRepository implements ShipmentRepository {
         return null;
     }
 
-
     @Override
     public Shipment save(Shipment shipment) {
         List<Shipment> shipments = findAll();

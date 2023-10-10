@@ -44,3 +44,34 @@ public class MainController {
         return "redirect:/"; // Перенаправьте пользователя на главную страницу после создания трек-номера
     }
 }
+/*
+- src
+  - main
+    - java
+        - com.example.deliveryexpress
+          - controller
+            MainController.java
+            ShipmentController.java
+            ShipmentForm.java
+          - model
+            Shipment.java
+            ShipmentsData.java
+            ShipmentStatus.java
+          - repository
+            ShipmentRepository.java
+            YamlShipmentRepository.java
+          - service
+            ShipmentService.java
+            ShipmentServiceImpl.java
+            YamlShipmentService.java
+          DeliveryExpressApplication.java
+    - resources
+        - static
+        - templates
+          - create.html
+          - index.html
+          - result.html
+        - application.properties
+        - shipments.yaml
+
+ */
