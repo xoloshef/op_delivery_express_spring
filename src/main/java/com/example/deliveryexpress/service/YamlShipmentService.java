@@ -5,6 +5,7 @@ import com.example.deliveryexpress.model.Shipment;
 import com.example.deliveryexpress.model.ShipmentStatus;
 import com.example.deliveryexpress.model.ShipmentsData;
 import com.example.deliveryexpress.repository.ShipmentRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class YamlShipmentService implements ShipmentService {
     private final String YAML_FILE = "shipments.yaml";
 
     private final ShipmentRepository shipmentRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     public YamlShipmentService(ShipmentRepository shipmentRepository) {
@@ -62,6 +66,7 @@ public class YamlShipmentService implements ShipmentService {
     @Override
     public List<Shipment> getAllShipments() {
         Yaml yaml = new Yaml();
+        System.out.println("File path: " + getClass().getResource("/shipments.yaml"));
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(YAML_FILE)) {
             ShipmentsData shipmentsData = yaml.load(inputStream);
             return shipmentsData.getShipments();
@@ -86,19 +91,9 @@ public class YamlShipmentService implements ShipmentService {
             }
         }
 
+        // Если отправление не найдено, вернуть null
         return null;
     }
-
-    /* private List<Shipment> loadShipmentsFromYamlFile() {
-        Yaml yaml = new Yaml();
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(YAML_FILE)) {
-            ShipmentsData shipmentsData = yaml.load(inputStream);
-            return shipmentsData.getShipments();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<>(); // Возвращаем пустой список в случае ошибки
-    } */
 
     private List<Shipment> loadShipmentsFromYamlFile() {
         Yaml yaml = new Yaml();

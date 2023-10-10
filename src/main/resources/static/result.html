@@ -38,7 +38,7 @@
 
     <style>
      body {
-       background-image: url('/static/hand-drawn-minimal-background.jpg');
+       background-image: url('/hand-drawn-minimal-background.jpg');
        background-size: cover;
        background-repeat: no-repeat;
      }
@@ -61,8 +61,12 @@
       <th>Значение</th>
     </tr>
     <tr>
+      <td>Трек-номер:</td>
+      <td th:text="${shipment.trackingNumber}"></td>
+    </tr>
+    <tr>
       <td>Статус:</td>
-      <td th:text="${shipment.status}"></td>
+      <td th:text="${shipment != null ? shipment.status : 'Not Found'}" class="not-found"></td>
     </tr>
     <tr>
       <td>Адрес отправителя:</td>
@@ -77,10 +81,11 @@
       <td th:text="${shipment.dateReceived}"></td>
     </tr>
     <tr>
-      <td>Время обнавления статуса:</td>
+      <td>Время обновления статуса:</td>
       <td th:text="${shipment.lastStatusDate}"></td>
     </tr>
   </table>
+  <a th:href="@{'/result.html?trackingNumber=' + ${shipment.trackingNumber}}">Ссылка на результаты</a>
 </div>
 </body>
 </html>
