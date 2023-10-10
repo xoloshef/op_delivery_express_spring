@@ -10,6 +10,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +74,7 @@ public class YamlShipmentRepository implements ShipmentRepository {
         }
     }
     private List<Shipment> loadShipmentsFromYamlFile() {
-        Yaml yaml = new Yaml(new Constructor(ShipmentsData.class));
+        Yaml yaml = new Yaml(new Constructor(Shipment.class));
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(yamlFilePath)) {
             ShipmentsData shipmentsData = yaml.load(inputStream);
             return shipmentsData.getShipments();

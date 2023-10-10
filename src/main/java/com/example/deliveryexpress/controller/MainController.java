@@ -25,9 +25,9 @@ public class MainController {
         Shipment shipment = shipmentService.findShipmentByTrackingNumber(trackingNumber);
         if (shipment != null) {
             model.addAttribute("shipment", shipment);
-            return "result.html";
+            return "redirect:/result.html?trackingNumber=" + trackingNumber;
         } else {
-            return "index.html";
+            return "redirect:/index.html";
         }
     }
 
@@ -49,7 +49,7 @@ public class MainController {
 
     @PostMapping("/create")
     public String createShipment(@ModelAttribute ShipmentForm shipmentForm) {
-        // Извлеките данные из shipmentForm и сохраните их в YAML-файле
+
         shipmentService.createShipmentFromForm(shipmentForm);
         return "redirect:/index.html";
     }
