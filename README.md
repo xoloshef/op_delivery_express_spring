@@ -14,6 +14,8 @@
 
 Более подробно я все расписла в файле [Отчет по проекту Java Spring](Отчет_по_ОзнакПрактик4.docx)
 
+[Отчет по проекту Java Spring ссылка на Google Drive](https://docs.google.com/document/d/14RdninGY-CNq7yWc9nSaM2Xg_ynBTDsM/edit?usp=sharing&ouid=101049565261177128317&rtpof=true&sd=true)
+
 --------
 
 1) Рекомендую, чтоб у вас быд аналогичная версия JDK что и использовалась при разработке (openjdk 17.0.2): 
@@ -46,6 +48,8 @@ openjdk 17.0.2 2022-01-18
 OpenJDK Runtime Environment (build 17.0.2+8-86)
 
 OpenJDK 64-Bit Server VM (build 17.0.2+8-86, mixed mode, sharing)
+
+Spring Boot 3.1.4
 
 ----------
 Статус проекта - окончен, все что хотел реализовал. 
